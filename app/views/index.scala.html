@@ -1,0 +1,20 @@
+@(message: String)(implicit request: RequestHeader)
+
+@main("Just another game!") {
+	<h1>@message</h1>
+	<h2>Ready ? GO !</h2>
+	<section id="playground">
+	PLAYGROUND
+	</section>
+	<script type="text/javascript">
+		$(function() {
+			var ws = new WebSocket("@routes.WebSock.aleatPosition.webSocketURL()");
+			
+			ws.onmessage = function(msg){
+				$("#playground").append(msg.data + "<br/>");
+				console.log(msg.data);
+			};
+		});
+	</script>
+
+}
